@@ -14,7 +14,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class RoomGenerator {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer userId;
@@ -27,6 +26,5 @@ public class RoomGenerator {
 
     @Column(name = "guessedWord")
     private String guessedWord;
-
 
 }
