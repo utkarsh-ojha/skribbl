@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -35,6 +37,17 @@ public class RoomGeneratorServiceImpl implements RoomGeneratorService {
         String roomId = roomGeneratorDto.getRoomId();
         RoomGenerator roomGenerator = this.modelMapper.map(roomGeneratorDto, RoomGenerator.class);
         RoomGenerator savedRoomGenerator = this.roomGeneratorRepo.save(roomGenerator);
+    }
+
+    @Override
+    public List<String> getUsersByRoomId(String roomId) {
+        List<String> userNames = new ArrayList<>();
+        List<RoomGenerator> roomGeneratorsUsers = this.roomGeneratorRepo.findAllByRoomId(roomId);
+        int a = roomGeneratorsUsers.size();
+        for (int i = 0; i < roomGeneratorsUsers.size(); i++) {
+            userNames.add(roomGeneratorsUsers.get(i).getUserName());
+        }
+        return userNames;
     }
 
     private String generateNewRoomId() {
