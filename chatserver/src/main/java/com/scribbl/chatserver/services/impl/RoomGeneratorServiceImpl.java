@@ -43,7 +43,6 @@ public class RoomGeneratorServiceImpl implements RoomGeneratorService {
     public List<String> getUsersByRoomId(String roomId) {
         List<String> userNames = new ArrayList<>();
         List<RoomGenerator> roomGeneratorsUsers = this.roomGeneratorRepo.findAllByRoomId(roomId);
-        int a = roomGeneratorsUsers.size();
         for (int i = 0; i < roomGeneratorsUsers.size(); i++) {
             userNames.add(roomGeneratorsUsers.get(i).getUserName());
         }
