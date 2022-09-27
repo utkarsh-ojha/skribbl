@@ -27,5 +27,6 @@ public class RoomGenerator {
     @Column(name = "guessedWord")
     private String guessedWord;
 
-    private String score;
+    @Column
+    private Integer score = 0;
 }

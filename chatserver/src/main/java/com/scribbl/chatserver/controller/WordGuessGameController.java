@@ -13,6 +13,7 @@ public class WordGuessGameController {
     private WordGuessGameImpl wordGuessGame;
 
     private String randomWord;
+    private Integer score;
 
     @GetMapping("wordguessgame/newword")
     public String newRandomWordSelector() {
@@ -20,9 +21,13 @@ public class WordGuessGameController {
         return randomWord;
     }
 
-    @GetMapping("wordguessgame/checkGuessedWord")
-    public boolean checkGuessedWordByPlayer(@RequestBody String guessedWord) {
-        return wordGuessGame.checkTheGuessedWord(guessedWord);
+    @GetMapping("wordguessgame/calculateScore")
+    public Integer checkGuessedWordByPlayer(@RequestBody String guessedWord) {
+        boolean wordCheck = wordGuessGame.checkTheGuessedWord(guessedWord);
+        if (wordCheck) {
+            score = score + 10;
+        }
+        return score;
     }
 
 }
