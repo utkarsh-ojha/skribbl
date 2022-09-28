@@ -28,6 +28,21 @@ public class GameDriverServiceImpl implements GameDriverService {
             scoreMap.put(user, 0);
         }
         //looping user for each iteration.
+        // one user choose a word and others starts guessing
+
+        for(String user1:userList){
+            // each user gets a chance to choose a particular word
+            for(String user2:userList) {
+                // other user's will try to guess that word
+                if (user1.equals(user2)) {
+                    continue;
+                }
+                // calculate the score according to successful match of guessed word
+                scoreMap.put(user2,scoreMap.get(user2)+100);
+                // every user will get the score updated like this 
+            }
+        }
+
         return null;
     }
 }
